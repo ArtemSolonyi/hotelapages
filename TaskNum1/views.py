@@ -58,6 +58,7 @@ class ChangePhotoProfile(View):
             except UserProfile.DoesNotExist:
                 user_profile = UserProfile.objects.create(user=user, avatar=photo_profile)
                 user_profile.save()
+
             return HttpResponseRedirect(reverse('profile'))
 
     def get(self, request):

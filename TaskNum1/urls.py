@@ -10,6 +10,6 @@ urlpatterns = [
     path('post_hotel', PostHotel.as_view(), name='post_hotel'),
     path('change_photo', ChangePhotoProfile.as_view(), name='change_photo_profile'),
     path('delete_hotel/<str:pk>/', views.delete_hotel, name='delete_hotel'),
-    path(r'<str:pk>', HotelPage.as_view(), name='hotel'),
+    path(r'hotel/<str:pk>', HotelPage.as_view(), name='hotel'),
     path('comment/<str:pk>', views.add_hotel_comment, name='hotel_comment'),
 ]

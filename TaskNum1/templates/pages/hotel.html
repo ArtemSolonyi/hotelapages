@@ -16,10 +16,6 @@
 </head>
 <body>
 
-<style>
-
-
-</style>
 
 <div class="top-bar">
     <div class="row">
@@ -118,7 +114,7 @@
             {% for comment in hotel_comments %}
                 <div class="bg-white p-2">
                     <div class="d-flex flex-row user-info"><img class="rounded-circle"
-                                                                src="images/{{ comment.user.userprofile.avatar }}"
+                                                                src="{% static comment.user.userprofile.get_avatar_url %}"
                                                                 width="40">
                         <div class="d-flex flex-column justify-content-start ml-2"><span
                                 class="d-block font-weight-bold name">{{ comment.user.username }}</span><span
@@ -142,7 +138,7 @@
                 <form method="POST" action="{% url 'hotel_comment' hotel.id %}">
                     {% csrf_token %}
                     <div class="d-flex flex-row align-items-start">
-                        <div style="background-image: url(static/images/{{ request.user.userprofile.avatar }})"
+                        <div style="background-image: url({% static request.user.userprofile.get_avatar_url %})"
                              class="avatar avatar-lg"></div>
                         <textarea name="comment" class="form-control ml-1 shadow-none textarea"></textarea>
                     </div>

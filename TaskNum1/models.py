@@ -28,6 +28,9 @@ class UserProfile(models.Model):
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
 
+    def get_avatar_url(self):
+        return f"images/{self.avatar}"
+
 
 class TestFile(models.Model):
     file = models.ImageField(blank=True, null=True, upload_to='images/')
