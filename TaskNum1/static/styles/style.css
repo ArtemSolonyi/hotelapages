@@ -1,0 +1,228 @@
+nav {
+    position: absolute;
+    top: 25px;
+}
+
+.padding-login {
+    position: absolute;
+    top: 15%;
+    left: 200px;
+}
+
+.bg-color {
+    background: #2DEDE6;
+}
+
+
+.profile_main_rectangle {
+    position: absolute;
+    width: 20%;
+    height: 80%;
+    top: 95px;
+    background: #BCDAFA;
+}
+
+
+.profile_rect-2 {
+    position: absolute;
+    width: 90%;
+    height: 50%;
+    left: 5%;
+    top: 50px;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 25px;
+}
+
+.bg-page {
+    background: #BCDAFA;
+    position: absolute;
+    top: 95px;
+    height: 80%;
+
+}
+
+
+.img-profile {
+    border-radius: 100%;
+}
+
+.position_button_leave {
+    position: absolute;
+    top: 140%;
+    left: 73%;
+
+}
+
+.bg-post-hotel {
+    position: absolute;
+    width: 50%;
+    height: auto;
+    top: 95px;
+    left: 25%;
+    background: #BCDAFA;
+}
+
+.position-button-refresh-data {
+    position: absolute;
+    top: 140%;
+    left: 3%;
+}
+
+.position-bg-profile-adverts {
+    position: absolute;
+    width: 20%;
+    height: 80%;
+    top: 95px;
+    background: #BCDAFA;
+}
+
+.bg-profile {
+    position: absolute;
+    top: 87px;
+    padding-right: 25%;
+    margin-left: 20.5%;
+}
+
+body {
+    margin-top: 20px;
+    background: #eee;
+}
+
+.card {
+    background-color: #fff;
+    border: 0 solid #eee;
+    border-radius: 0;
+}
+
+.card {
+    margin-bottom: 30px;
+    -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1), -1px 0 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1), -1px 0 2px rgba(0, 0, 0, 0.05);
+}
+
+.card-profile .card-header {
+    height: 9rem;
+    background-size: cover;
+    background-position: center center
+}
+
+.card-profile-img {
+    max-width: 8rem;
+    margin-top: -6rem;
+    margin-bottom: 1rem;
+    border: 3px solid #fff;
+    border-radius: 100%
+}
+
+.avatar {
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    border-radius: 50%;
+    display: inline-block;
+    background: #ced4da no-repeat center/cover;
+    position: relative;
+    text-align: center;
+    color: #868e96;
+    font-weight: 600;
+    vertical-align: bottom;
+}
+
+.avatar.avatar-lg {
+    width: 4rem;
+    height: 4rem
+}
+
+.avatar.avatar-xl {
+    width: 5rem;
+    height: 5rem
+}
+
+.avatar.avatar-xxl {
+    width: 7rem;
+    height: 7rem;
+    min-width: 7rem
+}
+
+.card-header:first-child {
+    border-radius: 0 0 0 0;
+}
+
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+.card-header {
+    padding: 1rem 1.25rem;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.card-header {
+    -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.05);
+}
+
+.bg-profile-bt {
+    position: absolute;
+    top: 38px;
+}
+
+.delete-icon {
+    content: "\1F582";
+}
+
+.carousel {
+    height: 400px !important;
+}
+
+.carousel-inner img {
+    height: 400px !important;
+    margin: 0 auto;
+}
+
+body {
+    background: #eee
+}
+
+.date {
+    font-size: 11px
+}
+
+.comment-text {
+    font-size: 12px
+}
+
+.fs-12 {
+    font-size: 12px
+}
+
+.shadow-none {
+    box-shadow: none
+}
+
+.name {
+    color: #007bff
+}
+
+.cursor:hover {
+    color: blue
+}
+
+.cursor {
+    cursor: pointer
+}
+
+.textarea {
+    resize: none
+}
+
+.carousel {
+    height: 400px !important;
+}
+
+.carousel-inner img {
+    height: 400px !important;
+    margin: 0 auto;
+}

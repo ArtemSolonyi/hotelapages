@@ -1,0 +1,11 @@
+{% extends 'pages/navbar.html' %}
+{% block content %}
+    <div class="container padding-login">
+        <form action="{% url 'login' %}" method="post">
+            {{ form }}
+            {% csrf_token %}
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+{% endblock %}
+

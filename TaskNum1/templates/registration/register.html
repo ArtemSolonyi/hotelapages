@@ -1,0 +1,16 @@
+{% block content %}
+    <center>
+        <form action="{% url 'register' %}" method="post">
+            <label>Введите имя</label>
+            {{ form.username }}
+            <label>Введите почту</label>
+            {{ form.email }}
+            <label>Введите пароль</label>
+            {{ form.password1 }}
+            <label>Введите повторно пароль</label>
+            {{ form.password2 }}
+            {% csrf_token %}
+            <button class="btn btn-success" type="submit">Зарегистрироватся</button>
+        </form>
+    </center>
+{% endblock %}
