@@ -1,42 +1,23 @@
-<div class="container mt-5">
-    <div class="d-flex justify-content-center row">
-
-        <div class="d-flex flex-column comment-section">
-            {% for comment in hotel_comments %}
-                <div class="bg-white p-2">
-                    <div class="d-flex flex-row user-info"><img class="rounded-circle"
-                                                                src="images/{{ comment.user.userprofile.avatar }}"
-                                                                width="40">
-                        <div class="d-flex flex-column justify-content-start ml-2"><span
-                                class="d-block font-weight-bold name">{{ comment.user.username }}</span><span
-                                class="date text-black-50">Shared publicly - Jan 2020</span></div>
-                    </div>
-                    <div class="mt-2">
-                        <p class="comment-text">{{ comment.user_comment }}</p>
-                    </div>
-                </div>
-            {% endfor %}
-            <div class="bg-white">
-                <div class="d-flex flex-row fs-12">
-                    <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span>
-                    </div>
-                    <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span>
-                    </div>
-                    <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
-                </div>
-            </div>
-            <div class="bg-light p-2">
-                <form method="POST" action="{% url 'hotel_comment' hotel.id %}">
-                    {% csrf_token %}
-                    <div class="d-flex flex-row align-items-start"><img class="rounded-circle"
-                                                                        src="https://i.imgur.com/RpzrMR2.jpg"
-                                                                        width="40">
-                        <textarea name="comment" class="form-control ml-1 shadow-none textarea"></textarea></div>
-                    <div class="mt-2 text-right">
-                        <button class="btn btn-primary btn-sm shadow-none" type="submit">Post comment</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+title = models.CharField(max_length=50, validators=[MaxLengthValidator(
+limit_value=50,
+message="Название слишком большое"
+)])
+star_rating = models.IntegerField(default=0, blank=True, null=True)
+breakfast_included = models.BooleanField(default=False)
+photo = models.ImageField(blank=True, null=True, upload_to='images/', validators=[MinLengthValidator(
+limit_value=1,
+message="Для создания отеля,требуется хотябы 1 фото"
+)])
+room_description = models.TextField(validators=[MaxLengthValidator(
+limit_value=100,
+message="Описание слишком большое,максимально количество слов 100"
+), MinValueValidator(
+limit_value=20,
+message="Минимальное количество слов описания, 20"
+)])
+price_for_room = models.IntegerField(default=0, blank=True, null=True, validators=[MaxLengthValidator(
+limit_value=10,
+message="Извините но это слишком большая сумма"
+)])
+address = models.TextField()
+user = models.ForeignKey(User, on_delete=models.CASCADE)

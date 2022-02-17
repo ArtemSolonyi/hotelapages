@@ -1,28 +1,58 @@
 {% extends 'pages/navbar.html' %}
 {% load static %}
-{% block content %}
-    <div class="container">
-        <div class="bg-post-hotel">
-            <form method="post" action="{% url 'post_hotel' %}" enctype="multipart/form-data">
-                {% csrf_token %}
-                <label for="title">Введите название отеля</label><br>
-                <input class='form-control' type="text" name="title">
-                <label for="room_description">Введите описание комнаты</label><br>
-                <textarea class='form-control' name="room_description"></textarea>
-                <label for="breakfast">Включен Завтрак?</label>
-                <input type="checkbox" name="breakfast"><br>
-                <label for="photo">Прикрепите фото из отеля</label><br>
-                <input type="file" multiple name="photos"><br>
-                <label for="price_for_room">Введите цену за комнату</label><br>
-                <input class='form-control' type="text" name="price_for_room">
-                <label for="address">Укажите адрес местоположения </label><br>
-                <input class='form-control' type="text" name="address">
-                <label for="rating">Оцените отель от 1 до 5</label>
-                <input class='form-control' type="text" name="rating">
-                <center>
-                    <button class="btn btn-info" type="submit">Создать</button>
-                </center>
-            </form>
-        </div>
+{% block post_hotel %}
+
+    <div class="bg-post-hotel">
+        <form method="post" action="{% url 'post_hotel' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <center><h3>Adding a hotel</h3></center>
+            <label for="title">Введите название отеля</label><br>
+            <div class="btn-warning">
+                {% for error in errors.title %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+            <br>
+            <input class='form-control' type="text" name="title">
+            <label for="room_description">Введите описание комнаты</label><br>
+            <div class="btn-warning">
+                {% for error in errors.room_description %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+            <br>
+            <textarea style='position: absolute;height: 75px' class='form-control'
+                      name="room_description"></textarea><br><br><br>
+            <label for="breakfast">Включен Завтрак?</label>
+            <input type="checkbox" name="breakfast"><br>
+            <div class="btn-warning">
+                {% if errors.photos %}
+                    {{ errors.photos }}
+                {% endif %}
+            </div>
+            <label for="photo">Прикрепите фото из отеля</label>
+            <input type="file" multiple name="photos">
+            <label for="price_for_room">Введите цену за комнату</label>
+            <div class="btn-warning">
+                {% for error in errors.price_for_room %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+            <br>
+            <input class='form-control' type="text" name="price_for_room">
+            <label for="address">Укажите адрес местоположения </label><br>
+            <input class='form-control' type="text" name="address">
+            <center>
+                <button style='position:relative;margin-bottom: 60px' class="btn btn-success"
+                        type="submit">Создать
+                </button>
+            </center>
+
+        </form>
     </div>
+
+
+
+
+
 {% endblock %}

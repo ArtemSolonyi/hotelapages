@@ -1,0 +1,48 @@
+{% extends 'pages/navbar.html' %}
+{% load static %}
+{% block hotels %}
+
+    <div class="row">
+        {% for hotel in user_hotels %}
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-img-actions"><a
+                                href="{% url 'hotel' hotel.id %}"
+                                target="_blank"><img src="{% static  hotel.photo %}"
+                                                     class="card-img img-fluid" width="96"
+                                                     height="100" alt=""/></a></div>
+
+                    </div>
+
+                    <div class="card-body bg-light text-center">
+                        <div class="mb-2">
+                            <h6 class="font-weight-semibold mb-2"><a href="#"
+                                                                     class="text-default mb-2"
+                                                                     data-abc="true">{{ hotel.title }}</a>
+                            </h6> <a href="#" class="text-muted" data-abc="true">
+                        </a>
+                        </div>
+                        <h3 class="mb-0 font-weight-semibold">
+                            ${{ hotel.price_for_room }}
+                        </h3>
+                        {% if not hotel.star_rating == 0 %}
+                            <div>
+                                {% with '5'|center:hotel.star_rating as range %}
+                                    {% for _ in range %}
+                                        <i class="fa fa-star star"></i>
+                                    {% endfor %}
+                                {% endwith %}
+                            </div>
+                        {% else %}
+                            <div>
+                                No reviws
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

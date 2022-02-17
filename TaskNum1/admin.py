@@ -1,4 +1,4 @@
-from .models import Hotel, UserProfile, TestFile, HotelPhoto, HotelComment
+from .models import Hotel, UserProfile, TestFile, HotelPhoto, HotelComment, UsersRatingHotel
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
@@ -24,3 +24,4 @@ admin.site.register(Hotel)
 admin.site.register(TestFile)
 admin.site.register(HotelPhoto)
 admin.site.register(HotelComment)
+admin.site.register(UsersRatingHotel)

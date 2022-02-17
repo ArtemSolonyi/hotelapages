@@ -1,10 +1,11 @@
 from django.urls import path
-from TaskNum1.views import login_, Register, Home, Profile, PostHotel, ChangePhotoProfile, HotelPage
+from TaskNum1.views import Home, Profile, PostHotel, ChangePhotoProfile, HotelPage
 from TaskNum1 import views
 
 urlpatterns = [
-    path('login', login_, ),
-    path('register', Register.as_view(), name='register'),
+    path('login/', views.login_, name='login'),
+    path('logout/', views.logoutUser, name='logout'),
+    path('register', views.registerPage, name='register'),
     path('', Home.as_view(), name='home'),
     path('profile', Profile.as_view(), name='profile'),
     path('post_hotel', PostHotel.as_view(), name='post_hotel'),

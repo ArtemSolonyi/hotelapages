@@ -1,157 +1,145 @@
 {% extends 'pages/navbar.html' %}
-{% block content %}
-    <div class="container">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 bg-profile-bt">
-                    <div class="card card-profile">
-                        <div style="background-image: url(https://demo.bootstrapious.com/admin-premium/1-4-5/img/photos/paul-morris-116514-unsplash.jpg);"
-                             class="card-header"></div>
-                        <div class="card-body text-center"><span
-                                style="background-image: url(static/images/{{ user_profile_photo }})"
-                                class="avatar avatar-xxl mr-3"></span>
-                            <h3 class="mb-3">{{ request.user.username }}</h3>
-                            <p class="mb-4">
-                            <form method="POST" action="{% url 'change_photo_profile' %}" enctype="multipart/form-data">
+{% load static %}
+{% block profile %}
+    {% if request.user.is_authenticated %}
+        <div class="row">
+        <div class="col-lg-4">
+        <div class="card card-profile">
+            <div style="background-image: url(https://demo.bootstrapious.com/admin-premium/1-4-5/img/photos/paul-morris-116514-unsplash.jpg);"
+                 class="card-header"></div>
+            <div class="card-body text-center"><span
+                    style="background-image: url({% static user_profile_photo %})"
+                    class="avatar avatar-xxl mr-3"></span>
+                <h3 class="mb-3">{{ request.user.username }}</h3>
+                <p class="mb-4">
+                <form method="POST" action="{% url 'change_photo_profile' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label class="form-label" for="customFile">Изменить аватар</label>
+                    <input type="file" name="photo_file" class="form-control"/></p>
+                    <button type=submit class="btn btn-outline-dark btn-sm">Обновить фото
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="media"><span
+                        style="background-image: url({% static user_profile_photo %})"
+                        class="avatar avatar-xl mr-3"></span>
+                    <div class="media-body">
+                        <h4>{{ request.user.username }}</h4>
+                        <p class="text-muted mb-0">Coder</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form class="card">
+        <div class="card-header">
+            <h3 class="card-title">My Profile</h3>
+        </div>
+        <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-auto d-flex align-items-center"><span
+                    style="background-image: url({% static user_profile_photo %})"
+                    class="avatar avatar-lg"></span></div>
+            <div class="col">
+                <div class="form-group">
+                    <label class="form-label">Name</label>
+                    <input placeholder="Your name" class="form-control"
+                           value="{{ request.user.username }}">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input placeholder="you@domain.com" class="form-control"
+                       value="{{ request.user.email }}">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" value="password" class="form-control">
+            </div>
+        </div>
+        <div class="card-footer text-right">
+        <button><a href="{% url 'logout' %}">Выйти из аккаунта</a></button>
+
+    {% else %}
+
+
+
+
+
+    {% endif %}
+</div>
+</div>
+</form>
+</div>
+
+<div class="col container" style="width: 40%">
+
+    {% if user_hotels %}
+        <div class="row">
+            {% for hotel in user_hotels %}
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-img-actions"><a
+                                    href="{% url 'hotel' hotel.id %}"
+                                    target="_blank"><img src="{% static hotel.photo %}"
+                                                         class="card-img img-fluid" width="96"
+                                                         height="100" alt=""/></a></div>
+
+                        </div>
+
+                        <div class="card-body bg-light text-center">
+                            <div class="mb-2">
+                                <h6 class="font-weight-semibold mb-2"><a href="#"
+                                                                         class="text-default mb-2"
+                                                                         data-abc="true">{{ hotel.title }}</a>
+                                </h6> <a href="#" class="text-muted" data-abc="true">
+                            </a>
+                            </div>
+                            <h3 class="mb-0 font-weight-semibold">
+                                ${{ hotel.price_for_room }}</h3>
+
+                            <!-- -->
+                            {% if not hotel.star_rating == 0 %}
+                                <div>
+                                    {% with '5'|center:hotel.star_rating as range %}
+                                        {% for _ in range %}
+                                            <i class="fa fa-star star"></i>
+                                        {% endfor %}
+                                    {% endwith %}
+                                </div>
+                            {% else %}
+                                No reviews
+                            {% endif %}
+                            <form method="POST" action="{% url 'delete_hotel' hotel.id %}">
                                 {% csrf_token %}
-                                <label class="form-label" for="customFile">Изменить аватар</label>
-                                <input type="file" name="photo_file" class="form-control"/></p>
-                                <button type=submit class="btn btn-outline-dark btn-sm">Обновить фото
+                                <button type="submit" act class="btn bg-cart"><i
+                                        class="fa fa-cart-plus mr-2"></i> Удалить
                                 </button>
                             </form>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="media"><span
-                                    style="background-image: url(static/images/{{ user_profile_photo }})"
-                                    class="avatar avatar-xl mr-3"></span>
-                                <div class="media-body">
-                                    <h4>{{ request.user.username }}</h4>
-                                    <p class="text-muted mb-0">Coder</p>
-                                    <ul class="social-links list-inline mb-0 mt-2">
-                                        <li class="list-inline-item"><a href="javascript:void(0)" data-toggle="tooltip"
-                                                                        data-placement="top" title=""
-                                                                        data-original-title="Nathan's Facebook"><i
-                                                class="fa fa-facebook"></i></a></li>
-                                        <li class="list-inline-item"><a href="javascript:void(0)" data-toggle="tooltip"
-                                                                        data-placement="top" title=""
-                                                                        data-original-title="@nathan_andrews"><i
-                                                class="fa fa-twitter"></i></a></li>
-                                        <li class="list-inline-item"><a href="javascript:void(0)" data-toggle="tooltip"
-                                                                        data-placement="top" title=""
-                                                                        data-original-title="+420777555987"><i
-                                                class="fa fa-phone"></i></a></li>
-                                        <li class="list-inline-item"><a href="javascript:void(0)" data-toggle="tooltip"
-                                                                        data-placement="top" title=""
-                                                                        data-original-title="@nathan"><i
-                                                class="fa fa-skype"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <form class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">My Profile</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="row mb-3">
-                                <div class="col-auto d-flex align-items-center"><span
-                                        style="background-image: url(static/images/{{ user_profile_photo }})"
-                                        class="avatar avatar-lg"></span></div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class="form-label">Name</label>
-                                        <input placeholder="Your name" class="form-control"
-                                               value="{{ request.user.username }}">
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label class="form-label">Email</label>
-                                    <input placeholder="you@domain.com" class="form-control"
-                                           value="{{ request.user.email }}">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Password</label>
-                                    <input type="password" value="password" class="form-control">
-                                </div>
-                            </div>
-                            <div class="card-footer text-right">
-                                {% if request.user.is_authenticated %}
-                                    <button><a href="{% url 'logout' %}">Выйти из аккаунта</a></button>
-                                    <button class="btn btn-primary">Save</button>
-                                {% else %}
-                                    {{ request.user.is_authenticated }}
-                                    <button><a href="{% url 'login' %}">Войти</a></button>
-
-                                {% endif %}
-                            </div>
-                    </form>
                 </div>
-            </div>
-
-            <div class="bg-profile">
-                <div class="container d-flex justify-content-center mt-50 mb-50">
-                    {% if user_hotels %}
-
-                        <div class="row">
-                            {% for hotel in user_hotels %}
-                                <div class="col-md-7 mt-2">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="card-img-actions"><a
-                                                    href="{% url 'hotel' hotel.id %}"
-                                                    target="_blank"><img src="static/images/{{ hotel.photo }}"
-                                                                         class="card-img img-fluid" width="96"
-                                                                         height="350" alt=""/></a></div>
-
-                                        </div>
-
-                                        <div class="card-body bg-light text-center">
-                                            <div class="mb-2">
-                                                <h6 class="font-weight-semibold mb-2"><a href="#"
-                                                                                         class="text-default mb-2"
-                                                                                         data-abc="true">{{ hotel.title }}</a>
-                                                </h6> <a href="#" class="text-muted" data-abc="true">
-                                            </a>
-                                            </div>
-                                            <h3 class="mb-0 font-weight-semibold">
-                                                ${{ hotel.price_for_room }}</h3>
-                                            <div><i class="fa fa-star star"></i> <i class="fa fa-star star"></i>
-                                                <i
-                                                        class="fa fa-star star"></i> <i
-                                                        class="fa fa-star star"></i>
-                                            </div>
-                                            <div class="text-muted mb-3">Рейтинг: {{ hotel.star_rating }}</div>
-                                            <form method="POST" action="{% url 'delete_hotel' hotel.id %}">
-                                                {% csrf_token %}
-                                                <button type="submit" act class="btn bg-cart"><i
-                                                        class="fa fa-cart-plus mr-2"></i> Удалить
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        <div style='position:absolute; left: 50%;' class="container">
-                        <center><h5>Пока здесь нет объявлений</h5></center>
-                        <p>Здесь будут появляться ваши новые объявления</p>
-                        <center><a class="btn btn-primary" href="{% url 'post_hotel' %}">Создать обьявление</a>
-                        </center>
-
-                    {% endif %}
-
-                    </div>
-
-                </div>
-            </div>
+            {% endfor %}
         </div>
-    </div>
-    </div>
+    {% else %}
+
+        <div class="container">
+            <center><h5>Пока здесь нет объявлений</h5>
+                Здесь будут появляться ваши новые объявления
+                <a class="btn btn-primary" href="{% url 'post_hotel' %}">Создать обьявление</a>
+            </center>
+        </div>
+
+    {% endif %}
+</div>
+</div>
+
+
+
 {% endblock %}
