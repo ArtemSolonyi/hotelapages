@@ -89,7 +89,7 @@ class ChangePhotoProfile(View):
             return HttpResponseRedirect(reverse('profile'))
 
 
-def registerPage(request):
+def register_page(request):
     if request.user.is_authenticated:
         return redirect('home')
     else:
@@ -148,7 +148,7 @@ def login_(request):
         return render(request, 'registration/login.html', context)
 
 
-def logoutUser(request):
+def logout_user(request):
     logout(request)
     return redirect('login')
 

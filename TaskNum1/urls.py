@@ -4,8 +4,8 @@ from TaskNum1 import views
 
 urlpatterns = [
     path('login/', views.login_, name='login'),
-    path('logout/', views.logoutUser, name='logout'),
-    path('register', views.registerPage, name='register'),
+    path('logout/', views.logout_user, name='logout'),
+    path('register', views.register_page, name='register'),
     path('', Home.as_view(), name='home'),
     path('profile', Profile.as_view(), name='profile'),
     path('post_hotel', PostHotel.as_view(), name='post_hotel'),

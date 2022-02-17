@@ -42,6 +42,7 @@ class Hotel(models.Model):
         limit_value=50,
         message="Название слишком большое"
     )])
+
     star_rating = models.IntegerField(default=0, blank=True, null=True)
     breakfast_included = models.BooleanField(default=False)
     photo = models.ImageField(blank=True, null=True, upload_to='images/', )
